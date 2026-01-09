@@ -1,16 +1,12 @@
-import java.util.Objects;
-
 public class Player {
     private static long playerId = 1;
 
     private String name;
     private int hp;
-    private String team;
-    private long id;
+    private final long id;
 
-    public Player(String name, String team) {
+    public Player(String name) {
         this.name = name;
-        this.team = team;
         this.hp = 100;
         this.id = playerId;
         setIdPlayer(playerId + 1);
@@ -35,21 +31,20 @@ public class Player {
         return this.hp;
     }
 
-    public String getTeam(){
-        return this.team;
+    
+    public void minusHp(int power) {
+        this.hp -= power * 10;
+    
+    }
+    
+    public boolean isAlive(){
+        return this.hp > 0;
     }
 
-    public void minusHp(int hpForMinus) {
-        this.hp -= hpForMinus;
-    }
-
-    private void attack (Player player) {
-        player.minusHp(10);
-    }
-
+    
    @Override
     public String toString() {
-        return "Id - " + this.id + ", Player - " + this.name + ", Team - " + this.team + ", hp is - " + this.hp;
+        return "Id - " + this.id + ", Player - " + this.name +  ", hp is - " + this.hp;
     }
 
 }
